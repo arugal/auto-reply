@@ -363,10 +363,4 @@ def get_thread_list(aim_tieba: str, pn=0):
     return threads
 
 
-if __name__ == '__main__':
-    bduss = 'nJXVEVPfm5aU1JZOG9NaVRFNHVEeEFKSUVLUEJNUXlHYkxEWnRpQX5pfnMwalpkSVFBQUFBJCQAAAAAAAAAAAEAAADzPEUpybW1xNPQu-7BpgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOxFD13sRQ9dV'
-    list = get_thread_list(aim_tieba='湖南工业职业技术学院')
-    for topic in list:
-        # client_Post(bduss=bduss, kw='湖南工业职业技术学院', fid='195965', tid=topic['tid'], content='嗨咯')
-        # time.sleep(2)
-        print(topic)
+# client_Post(bduss=bduss, kw='', fid='', tid=topic['tid'], content='嗨咯')
