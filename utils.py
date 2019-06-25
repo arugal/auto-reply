@@ -176,6 +176,20 @@ def get_kw(tid):
     return kw
 
 
+def get_time(tid):
+    # 通过tid获取发帖时间
+    headers = {
+        'Host': 'tieba.baidu.com',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36',
+    }
+    url = 'https://tieba.baidu.com/p/' + str(tid)
+    res = requests.get(url=url, headers=headers, timeout=2).text
+    time = re.findall('&quot;open_type&quot;:&quot;phone&quot;,&quot;date&quot;:&quot;(.*?)&quot;', res)
+    if len(time) == 0:
+        return None
+    return time[0]
+
+
 def LZL(bduss, content, kw, fid, tid, qid, floor):
     # 网页端楼中楼
     tbs = get_tbs(bduss)
@@ -362,5 +376,13 @@ def get_thread_list(aim_tieba: str, pn=0):
         return []
     return threads
 
+
+def compare(tid):
+    timeStr = get_time(tid)
+    if None == timeStr:
+        return False
+    time1 = time.mktime(time.strptime(timeStr, "%Y-%m-%d %H:%M"))
+    time2 = time.time() - 60 * 60 * 24 * 7
+    return time1 >= time2
 
 # client_Post(bduss=bduss, kw='', fid='', tid=topic['tid'], content='嗨咯')

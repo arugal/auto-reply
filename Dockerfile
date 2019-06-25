@@ -10,6 +10,7 @@ RUN mkdir ${DIR} \
 COPY main.py ${DIR}/
 COPY mongo.py ${DIR}/
 COPY utils.py ${DIR}/
+COPY config.ini ${DIR}/
 COPY requirements.txt ${DIR}/
 
 RUN pip install -r ${DIR}/requirements.txt -i https://pypi.douban.com/simple

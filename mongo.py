@@ -1,8 +1,12 @@
 #!/usr/bin/python3
 
 import pymongo
+from configparser import ConfigParser
 
-__client = pymongo.MongoClient(host='192.168.31.108', port=27017)
+__cfg = ConfigParser()
+__cfg.read('config.ini')
+
+__client = pymongo.MongoClient(host=__cfg.get('server', 'mongo.ip'), port=__cfg.getint('server', 'mongo.port'))
 __db = __client['auto_reply']
 __collection = __db['early_reply']
 
@@ -31,7 +35,3 @@ def get(tid):
 
 def earlyReply(tid):
     return get(tid) != None
-
-
-if __name__ == '__main__':
-    print(earlyReply('12'))
